@@ -3,7 +3,7 @@ from discord import app_commands
 from discord.ext import commands
 import os
 from dotenv import load_dotenv
-from services.check_user import check_user_bio
+from services.check_user import verifyBio
 
 load_dotenv()
 DISCORD_TOKEN = os.getenv("DISCORD_TOKEN")
@@ -22,8 +22,7 @@ class VerifyCog(commands.Cog):
         author_id = interaction.user.id
 
         try:
-            matches = check_user_bio(
-                token=DISCORD_TOKEN,
+            matches = verifyBio(
                 user_id=str(author_id),
                 search_string=SEARCH_STRING,
             )
