@@ -5,6 +5,9 @@ from selenium.webdriver.support.ui import WebDriverWait
 import time
 import os
 from pathlib import Path
+from dotenv import load_dotenv
+
+load_dotenv(dotenv_path=Path(__file__).parent.parent / ".env")
 
 driver_path = Path(__file__).parent / "driver" / "chromedriver.exe"
 
@@ -16,7 +19,7 @@ driver = webdriver.Chrome(service=service, options=options)
 wait = WebDriverWait(driver, 15)
 
 
-TOKEN = "MTQ3Mjk3MzM2NjU5MDgzMjg2Nw.GHTizH.wpyWYst33Bf7vwk-CQ1_oTE0VA5ZRg2YXDO4zE"
+TOKEN = os.getenv("DISCORD_TOKEN")
 driver.get("https://discord.com/login")
 
 time.sleep(5)
